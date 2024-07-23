@@ -1,0 +1,92 @@
+﻿@using API.Data
+@{
+    ViewData["Title"] = "Home Page";
+}
+@model IEnumerable<CartItem>
+<style>
+    .cart-image {
+    width: 100px; /* Set a consistent width */
+    height: auto; /* Maintain aspect ratio */
+}
+
+</style>
+<section class="shopping-cart spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="shopping__cart__table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                decimal tongTien = 0; // Initialize total amount
+                            }
+                            @foreach (var item in Model)
+                            {
+                                var thanhsp = item.Quantity * item.Price;
+                                <tr>
+                                    <td class="product__cart__item">
+                                        <div class="product__cart__item__pic">
+                                            <img src="~/images/@item.ImageCart" alt="" class="cart-image">
+                                        </div>
+                                        <div class="product__cart__item__text">
+                                            <h6>@item.NameCart</h6>
+                                        </div>
+                                    </td>
+                                    <td class="quantity__item">
+                                        <div class="quantity">
+                                            @item.Quantity
+                                        </div>
+                                    </td>
+                                    <td class="cart__price">@thanhsp</td>
+                                    <td class="cart__close">
+                                        <a asp-action="Remove" asp-controller="Cart" asp-route-id="@item.FoodId">
+                                            <span class="icon_close"></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                                tongTien += thanhsp;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="continue__btn">
+                            <a href="#">Continue Shopping</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="continue__btn update__btn">
+                            <a href="#"><i class="fa fa-spinner"></i> Update cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="cart__discount">
+                    <h6>Discount codes</h6>
+                    <form action="#">
+                        <input type="text" placeholder="Coupon code">
+                        <button type="submit">Apply</button>
+                    </form>
+                </div>
+                <div class="cart__total">
+                    <h6>Cart total</h6>
+                    <ul>
+                        <li>Subtotal <span>$ @tongTien</span></li>
+                        <li>Total <span>$ @tongTien</span></li>
+                    </ul>
+                    <a href="@Url.Action("Checkout", "Cart")" class="primary-btn">payment</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

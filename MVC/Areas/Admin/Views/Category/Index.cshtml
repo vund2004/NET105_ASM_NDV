@@ -1,0 +1,63 @@
+﻿@model IEnumerable<API.Data.Category>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+    h1 {
+        text-align: center;
+        padding: 10px;
+    }
+
+    .shadow {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+</style>
+<h1>Danh Sách Loại Sản Phẩm</h1>
+<p>
+    <a asp-action="Create" class="btn btn-primary">Thêm loại sản phẩm</a>
+</p>
+<table class="table table-bordered">
+    <thead class="thead-light">
+        <tr class="table-warning">
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryId)
+               
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryName)
+            </th>
+            <th>Thao tác</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int i = 0;
+            string @cls = "table-success";
+        }
+@foreach (var item in Model) {
+            i = i + 1;
+            cls = "table-success";
+            if (i % 2 == 0)
+            {
+                cls = "table-primary";
+            }
+        <tr class="@cls">
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryId)
+               
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            <td>
+                    <a asp-action="Edit" asp-route-id="@item.CategoryId" class="btn btn-sm btn-primary">Sửa</a> 
+                    <a asp-action="Details" asp-route-id="@item.CategoryId" class="btn btn-sm btn-info">Chi tiết</a> 
+                    <a asp-action="Delete" asp-route-id="@item.CategoryId" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure delete?')">Xóa</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

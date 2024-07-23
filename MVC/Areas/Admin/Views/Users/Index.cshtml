@@ -1,0 +1,64 @@
+﻿@model IEnumerable<API.Data.User>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+     h1 {
+         text-align: center;
+         padding: 10px;
+     }
+
+     .shadow {
+         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+     }
+</style>
+<h1>Danh Sách Người Dùng</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Thêm người dùng</a>
+</p>
+<p>@TempData["Message"]</p>
+
+<table class="table table-bordered">
+    <thead class="thead-light">
+        <tr class="table-warning">
+            <th>@Html.DisplayNameFor(model => model.Username)</th>
+            <th>@Html.DisplayNameFor(model => model.Email)</th>
+            <th>@Html.DisplayNameFor(model => model.Fullname)</th>
+            <th>@Html.DisplayNameFor(model => model.Phone)</th>
+            <th>@Html.DisplayNameFor(model => model.Address)</th>
+            <th>@Html.DisplayNameFor(model => model.Role)</th>
+            <th>Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int i = 0;
+            string @cls = "table-success";
+        }
+        @foreach (var item in Model)
+        {
+            i = i + 1;
+            cls = "table-success";
+            if (i % 2 == 0)
+            {
+                cls = "table-primary";
+            }
+            <tr class ="@cls">
+                <td>@Html.DisplayFor(modelItem => item.Username)</td>
+                <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                <td>@Html.DisplayFor(modelItem => item.Fullname)</td>
+                <td>@Html.DisplayFor(modelItem => item.Phone)</td>
+                <td>@Html.DisplayFor(modelItem => item.Address)</td>
+                <td>@Html.DisplayFor(modelItem => item.Role)</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.UserId" class="btn btn-sm btn-primary">Sửa</a>
+                    <a asp-action="Details" asp-route-id="@item.UserId" class="btn btn-sm btn-info">Chi tiết</a>
+                    <a asp-action="Delete" asp-route-id="@item.UserId" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure delete?')">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

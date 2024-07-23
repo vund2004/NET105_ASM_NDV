@@ -1,0 +1,47 @@
+﻿@using API.Data
+@model User
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <div class="row p-5">
+        <div class="col-lg-5 m-auto">
+            <h1 class="text-center mb-3">Đăng Nhập</h1>
+             @using (Html.BeginForm("Login", "DkDn", FormMethod.Post))
+                {
+            <!-- Form bắt đầu -->
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text bi bi-person"></span>
+                        @Html.TextBoxFor(x => x.Email, new { @class = "form-control", placeholder = "Nhập email của bạn", required = "required", autofocus = "autofocus" })
+                    </div>
+            </div>
+            <!-- Mật khẩu -->
+            <div class="mb-3">
+                <label class="form-label">Mật khẩu</label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                        <input type="password" asp-for="Password" class="form-control" placeholder="Nhập mật khẩu của bạn" required />
+                    </div>
+            </div>
+                <div class="mb-3">
+                    <label style="color:red" class="form-label">@ViewBag.LoginFail</label>
+                  
+                </div>
+
+            <div class="d-grid">
+                    <button type="submit" class="btn btn-success" class="btn btn-primary" ng-click="Login()">Đăng Nhập</button>
+                <p class="text-center mt-2">
+                    Bạn chưa có tài khoản ? Đăng ký tại <a asp-controller="DKDN" asp-action="Dangky">đây</a>
+                </p>
+            </div>
+
+
+            }
+        </div>
+    </div>
+</div>
+

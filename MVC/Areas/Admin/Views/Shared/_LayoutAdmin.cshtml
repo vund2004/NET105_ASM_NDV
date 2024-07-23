@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Admin </title>
+    <link rel="stylesheet" href="~/../../LayoutAdmin/assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="~/../../LayoutAdmin/assets/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="~/../../LayoutAdmin/assets/css/style.css">
+</head>
+<style>
+    x
+    .no-text {
+        text-indent: -9999px; /* Ẩn văn bản đi */
+        overflow: hidden; /* Ẩn phần văn bản vượt ra ngoài */
+        display: block; /* Hiển thị thẻ a là block để có thể sử dụng width và height */
+        width: 30px; /* Đảm bảo chiều rộng của phần tử */
+        height: 30px; /* Đảm bảo chiều cao của phần tử */
+        background-image: url('path_to_your_icon_or_image.png'); /* Đường dẫn đến biểu tượng hoặc hình ảnh thay thế */
+        background-repeat: no-repeat; /* Không lặp lại hình ảnh */
+        background-size: cover; /* Phủ đầy kích thước của phần tử */
+    }
+
+</style>
+<body>
+    <div class="container-scroller">
+        <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center" style="margin-top:20px">
+            </div>
+            <div class="navbar-menu-wrapper d-flex align-items-stretch">
+                <ul class="navbar-nav navbar-nav-right">
+                    <li class="nav-item d-none d-lg-block full-screen-link"></li>
+
+                    <a asp-area="" asp-controller="Home" asp-action="Index">
+                        <span class="menu-title">SignOut</span>
+                        <i class="mdi mdi-contacts menu-icon"></i>
+                    </a>
+                    
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial -->
+            <div class="container-fluid page-body-wrapper">
+                <!-- partial:partials/_sidebar.html -->
+                <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                    <ul class="nav" style="margin-top:20px  ;  position: fixed;">
+
+                        <li class="nav-item" style="margin-top:10px; text-align: center;">
+                            <a class="nav-link" href="index.html" style="display: flex; flex-direction: column; align-items: center;">
+                                <h4>Chức năng</h4>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Users" asp-action="Index">
+                                <span class="menu-title">Quản lý người dùng</span>
+                                <i class="mdi mdi-contacts menu-icon"></i>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Food" asp-action="Index">
+                                <span class="menu-title">Quản lý sản phẩm</span>
+                                <i class="mdi mdi-table-large menu-icon"></i>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Category" asp-action="Index">
+                                <span class="menu-title">Quản lý loại sản phầm</span>
+                                <i class="mdi mdi-table-large menu-icon"></i>
+                            </a>
+                        </li>
+
+
+
+                    </ul>
+                </nav>
+
+                <div class="main-panel">
+                    <div class="content-wrapper">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <script src="~/../../LayoutAdmin/assets/vendors/js/vendor.bundle.base.js"></script>
+        <script src="~/../../LayoutAdmin/assets/js/off-canvas.js"></script>
+        <script src="~/../../LayoutAdmin/assets/js/hoverable-collapse.js"></script>
+        <script src="~/../../LayoutAdmin/assets/js/misc.js"></script>
+</body>
+</html>

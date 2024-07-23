@@ -1,0 +1,96 @@
+﻿@model IEnumerable<API.Data.Food>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<section class="shop spad">
+    <div class="container">
+        <div class="shop__option">
+            <div class="row">
+                <div class="col-lg-7 col-md-7">
+                    <div class="shop__option__search">
+                        <form id="searchForm" method="get" asp-controller="Foods" asp-action="Index">
+                            <select name="category">
+                                <option value="">Categories</option>
+                                <option value="Red Velvet">Red Velvet</option>
+                                <option value="CupCake">Cup Cake</option>
+                                <option value="Water">Water</option>
+                            </select>
+                            <input type="text" id="searchInput" placeholder="Search" name="search">
+                            <button type="submit" id="searchButton"><i class="fa fa-search"></i></button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-5">
+                    <div class="shop__option__right">
+                        <form id="sortForm" method="get" asp-controller="Foods" asp-action="Index">
+                            <select name="sort" onchange="this.form.submit()">
+                                <option value="">Default sorting</option>
+                                <option value="name_asc">A to Z</option>
+                                <option value="name_desc">Z to A</option>
+                                <option value="price_asc">Price: Low to High</option>
+                                <option value="price_desc">Price: High to Low</option>
+                            </select>
+                        </form>
+                        <a href="#"><i class="fa fa-list"></i></a>
+                        <a href="#"><i class="fa fa-reorder"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="foodResults">
+            @foreach (var item in Model)
+            {
+           
+                var categoryname = string.Empty;
+                if (item.CategoryId == 1 )
+                {
+                    categoryname = "Water";
+                }
+                if (item.CategoryId == 2)
+                {
+                    categoryname = "Cup Cake";
+                }
+@*                 <form asp-action="AddToCart" asp-controller="GioHang" asp-route-id="@item.FoodId">
+ *@                
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="product__item">
+                        <a asp-controller="Foods" asp-action="FoodDetail" asp-route-id="@item.FoodId">
+                            <div class="product__item__pic set-bg" data-setbg="../images/@item.Image">
+                                <div class="product__label">
+                                    <span>@categoryname</span>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="product__item__text">
+                            <h6><a href="#">@item.Name</a></h6>
+                            <div class="product__item__price">@item.Price</div>
+                            <div class="cart_add">
+                                    <a asp-action="FoodDetail" asp-controller="Foods" asp-route-id="@item.FoodId">Add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @* </form> *@
+            }
+        </div>
+        <div class="shop__last__option">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="shop__pagination">
+                        <a href="#">1</a>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <a href="#"><span class="arrow_carrot-right"></span></a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="shop__last__text">
+                        <p>Showing 1-9 of 10 results</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

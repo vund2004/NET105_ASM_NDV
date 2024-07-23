@@ -1,0 +1,40 @@
+﻿@model API.Models.CategoryVM
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    h1 {
+        text-align: center;
+        padding: 10px;
+    }
+
+    .shadow {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+</style>
+<h1>Sửa Loại sản phẩm</h1>
+<div class="row ">
+
+        <form asp-action="Edit">
+        <div class="col-sm-4">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" value="@ViewData["CategoryId"]" class="form-control" readonly />
+            <div class="form-group">
+                <label asp-for="CategoryName" class="control-label"></label>
+                <input asp-for="CategoryName" class="form-control" />
+                <span asp-validation-for="CategoryName" class="text-danger"></span>
+            </div>
+        </div>
+            <div class="row">
+                <div class="form-group col-sm-6 " dth:100px">
+                    <input type="submit" value="Sửa" class="btn btn-primary btn-lg btn-block shadow" />
+                    <a asp-action="Index" class="btn btn-secondary btn-lg btn-block shadow">Back to List</a>
+                </div>
+            </div>
+        </form>
+    
+</div>
+

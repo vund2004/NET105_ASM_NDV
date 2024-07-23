@@ -1,0 +1,301 @@
+﻿<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Cake Template">
+    <meta name="keywords" content="Cake, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cake | Template</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.css">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="~/Layout/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Layout/css/flaticon.css">
+    <link rel="stylesheet" href="~/Layout/css/barfiller.css">
+    <link rel="stylesheet" href="~/Layout/css/magnific-popup.css">
+    <link rel="stylesheet" href="~/Layout/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Layout/css/elegant-icons.css">
+    <link rel="stylesheet" href="~/Layout/css/nice-select.css">
+    <link rel="stylesheet" href="~/Layout/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Layout/css/slicknav.min.css">
+    <link rel="stylesheet" href="~/Layout/css/style.css">
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Offcanvas Menu Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas__cart">
+            <div class="offcanvas__cart__links">
+                <a href="#" class="search-switch"><img src="~/Layout/img/icon/search.png" alt=""></a>
+                <a href="#"><img src="~/Layout/img/icon/heart.png" alt=""></a>
+            </div>
+            <div class="offcanvas__cart__item">
+                <a href="#"><img src="~/Layout/img/icon/cart.png" alt=""> <span>0</span></a>
+                <div class="cart__price">Cart: <span>$0.00</span></div>
+            </div>
+        </div>
+        <div class="offcanvas__logo">
+            <a href="./index.html"><img src="~/Layout/img/logo.png" alt=""></a>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+        <div class="offcanvas__option">
+            <ul>
+                <li>
+                    USD <span class="arrow_carrot-down"></span>
+                    <ul>
+                        <li>EUR</li>
+                        <li>USD</li>
+                    </ul>
+                </li>
+                <li>
+                    ENG <span class="arrow_carrot-down"></span>
+                    <ul>
+                        <li>Spanish</li>
+                        <li>ENG</li>
+                    </ul>
+                </li>
+
+                <li>
+                    <span class="arrow_carrot-down">Sign in</span>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    <!-- Offcanvas Menu End -->
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="header__top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="header__top__inner">
+                            <div class="header__top__left">
+<ul>
+    <!-- Currency dropdown -->
+    <li>
+        USD <span class="arrow_carrot-down"></span>
+        <ul>
+            <li>EUR</li>
+            <li>USD</li>
+        </ul>
+    </li>
+
+    <!-- Language dropdown -->
+    <li>
+        ENG <span class="arrow_carrot-down"></span>
+        <ul>
+            <li>Spanish</li>
+            <li>ENG</li>
+        </ul>
+    </li>
+
+    <!-- User account and role logic -->
+    @{
+        string fullName = Context.Session.GetString("HoTen");
+        bool isLoggedIn = !string.IsNullOrEmpty(fullName);
+        string role = Context.Session.GetString("Role");
+                                       
+    }
+
+    @if (isLoggedIn)
+    {
+
+                                        <li>
+                                            @fullName <span class="arrow_carrot-down"></span>
+                                            <ul>
+                                                <a asp-controller="DkDn" asp-action="Logout">
+                                                <li>
+                                                    <span style="color:white">Logout</span>
+                                                </li>
+                                                </a>                                   
+                                                @if (role == "Admin")
+                                                {
+                                                    // Render the link for Admin users
+                                                    <a asp-area="Admin" asp-controller="HomeAdmin" asp-action="IndexAdmin">
+                                                    <li>
+                                                        <span style="color:white">Admin</span>
+                                                    </li>
+                                                    </a>
+                                                }
+                                            </ul>
+                                        </li>
+     
+     
+    }
+    else
+    {
+        <li>
+            Account <span class="arrow_carrot-down"></span>
+            <ul>
+                <a asp-controller="DKDN" asp-action="Login">
+                    <li>
+                        <span style="color:white">Login</span>
+                    </li>
+                </a>
+                <a asp-controller="DKDN" asp-action="Dangky">
+                    <li>
+                        <span style="color:white">Sign In</span>
+                    </li>
+                </a>
+            </ul>
+        </li>
+    }
+</ul>
+                            </div>
+                            <div class="header__logo">
+                                <a href="./index.html"><img src="~/Layout/img/logo.png" alt=""></a>
+                            </div>
+                            <div class="header__top__right">
+                                <div class="header__top__right__links">
+                                    <a href="#" class="search-switch"><img src="~/Layout/img/icon/search.png" alt=""></a>
+                                    <a href="#"><img src="~/Layout/img/icon/heart.png" alt=""></a>
+                                </div>
+                                <div class="header__top__right__cart">
+                                    <a href="#"><img src="~/Layout/img/icon/cart.png" alt=""> <span>0</span></a>
+                                    <div class="cart__price">Cart: <span>$0.00</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="canvas__open"><i class="fa fa-bars"></i></div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <nav class="header__menu mobile-menu">
+                        <ul>
+                            <li @* class="active" *@><a href=@Url.Action("Index", "Home")>Home</a></li>
+                            <li><a href=@Url.Action("About", "Home")>About</a></li>
+                            <li><a href=@Url.Action("Index", "Foods")>Shop</a></li>
+                            <li>
+                                <a href="#">Pages</a>
+                                <ul class="dropdown">
+                                    <li><a href=@Url.Action("ShopDetails", "Home")>Shop Details</a></li>
+                                    <li><a href=@Url.Action("Index", "Cart")>Shoping Cart</a></li>
+                                    <li><a href=@Url.Action("CheckOut", "Home")>Check Out</a></li>
+                                    <li><a href=@Url.Action("Class", "Home")>Class</a></li>
+
+                                    <li><a href=@Url.Action("Wisslist", "Home")>Wisslist</a></li>
+                                </ul>
+                            </li>
+                            <li><a href=@Url.Action("Blog", "Home")>Blog</a></li>
+                            <li><a href=@Url.Action("Contact", "Home")>Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+    <!-- Hero Section Begin -->
+    @RenderBody()
+
+
+
+
+    <footer class="footer set-bg" data-setbg="~/Layout/img/footer-bg.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>WORKING HOURS</h6>
+                        <ul>
+                            <li>Monday - Friday: 08:00 am – 08:30 pm</li>
+                            <li>Saturday: 10:00 am – 16:30 pm</li>
+                            <li>Sunday: 10:00 am – 16:30 pm</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="footer__about">
+                        <div class="footer__logo">
+                            <a href="#"><img src="~/Layout/img/footer-logo.png" alt=""></a>
+                        </div>
+                        <p>
+                            Lorem ipsum dolor amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore dolore magna aliqua.
+                        </p>
+                        <div class="footer__social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-youtube-play"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="footer__newslatter">
+                        <h6>Subscribe</h6>
+                        <p>Get latest updates and offers.</p>
+                        <form action="#">
+                            <input type="text" placeholder="Email">
+                            <button type="submit"><i class="fa fa-send-o"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <p class="copyright__text text-white">
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </p>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="copyright__widget">
+                            <ul>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Terms & Conditions</a></li>
+                                <li><a href="#">Site Map</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+    <!-- Search Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search End -->
+    <!-- Js Plugins -->
+    <script src="~/Layout/js/jquery-3.3.1.min.js"></script>
+    <script src="~/Layout/js/bootstrap.min.js"></script>
+    <script src="~/Layout/js/jquery.nice-select.min.js"></script>
+    <script src="~/Layout/js/jquery.barfiller.js"></script>
+    <script src="~/Layout/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/Layout/js/jquery.slicknav.js"></script>
+    <script src="~/Layout/js/owl.carousel.min.js"></script>
+    <script src="~/Layout/js/jquery.nicescroll.min.js"></script>
+    <script src="~/Layout/js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+﻿@model API.Models.FoodVM
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+    h1 {
+        text-align: center;
+        padding: 10px;
+    }
+
+    .shadow {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+</style>
+<h1>Thêm Sản Phẩm</h1>
+
+<div class="row">
+    <div class="row">
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label asp-for="Price" class="control-label"></label>
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    <label asp-for="Image" class="control-label"></label>
+                    <input type="file" asp-for="Image" class="form-control" />
+                    <span asp-validation-for="Image" class="text-danger"></span>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label asp-for="CreatedAt" class="control-label"></label>
+                    <input asp-for="CreatedAt" class="form-control" />
+                    <span asp-validation-for="CreatedAt" class="text-danger"></span>
+                </div>
+             
+            </div>
+            <div class="row " style="margin-left:160px">
+                <div class="form-group form-check col-sm-5">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="Available" />
+                        @Html.DisplayNameFor(model => model.Available)
+                    </label>
+                </div>
+
+                    <div class="form-group col-sm-6">
+                        <label asp-for="CategoryId" class="control-label"></label>
+                        <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+                    </div>
+            </div>
+
+
+            <div class="row">
+                <div class="form-group col-sm-6 " dth:100px">
+                    <input type="submit" value="Create" class="btn btn-primary btn-lg btn-block shadow" />
+                    <a asp-action="Index" class="btn btn-secondary btn-lg btn-block shadow">Back to List</a>
+
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+

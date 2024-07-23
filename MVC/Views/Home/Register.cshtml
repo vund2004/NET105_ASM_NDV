@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row p-5">
+    <div class="col-lg-5 m-auto">
+        <h1 class="text-center mb-3">Đăng Ký</h1>
+        <form name="registerForm" novalidate>
+            <!-- Email -->
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text bi bi-person"></span>
+                    <input type="email" ng-model="Users.email" name="txtEmail" required class="form-control"
+                           placeholder="Nhập email của bạn">
+                </div>
+
+             @*    <i class="text-danger" ng-show="registerForm.txtEmail.$touched && registerForm.txtEmail.$error.required">
+                    <i class="bi bi-info-circle"></i> <strong>Email không được bỏ trống</strong>
+                </i>
+                <i class="text-danger" ng-show="registerForm.txtEmail.$touched && registerForm.txtEmail.$error.email">
+                    <i class="bi bi-info-circle"></i> <strong>Email chưa đúng định dạng</strong>
+                </i> *@
+            </div>
+
+            <!-- Họ và tên -->
+            <div class="mb-3">
+                <label class="form-label">Họ và tên</label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text bi bi-person"></span>
+                    <input type="text" ng-model="Users.username" name="txtName" required class="form-control"
+                           ng-pattern="/^[^0-9]*$/" placeholder="Nhập họ và tên của bạn">
+                </div>
+@*                 <i class="text-danger" ng-show="registerForm.txtName.$touched && registerForm.txtName.$error.required">
+                    <i class="bi bi-info-circle"></i> <strong>Tên không được bỏ trống</strong>
+                </i>
+                <i class="text-danger" ng-show="registerForm.txtName.$touched && registerForm.txtName.$error.pattern">
+                    <i class="bi bi-info-circle"></i> <strong>Tên không được là số</strong>
+                </i> *@
+            </div>
+
+            <!-- Mật khẩu -->
+            <div class="mb-3">
+                <label class="form-label">Mật khẩu</label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text bi bi-lock"></span>
+                    <input type="password" ng-model="Users.password" name="txtPassword" required class="form-control"
+                           ng-minlength="6" ng-maxlength="12" placeholder="Nhập mật khẩu của bạn">
+                </div>
+              @*   <i class="text-danger" ng-show="registerForm.txtPassword.$touched && registerForm.txtPassword.$error.required">
+                    <i class="bi bi-info-circle"></i> <strong>Mật khẩu không được bỏ trống</strong>
+                </i>
+                <i class="text-danger" ng-show="registerForm.txtPassword.$touched && registerForm.txtPassword.$error.minlength">
+                    <i class="bi bi-info-circle"></i> <strong>Mật khẩu phải từ 6 kí tự trở lên</strong>
+                </i>
+                <i class="text-danger" ng-show="registerForm.txtPassword.$touched && registerForm.txtPassword.$error.maxlength">
+                    <i class="bi bi-info-circle"></i> <strong>Mật khẩu không được quá 12 kí tự</strong>
+                </i> *@
+            </div>
+
+            <!-- Nhập lại mật khẩu -->
+            <div class="mb-3">
+                <label class="form-label">Xác nhận mật khẩu</label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text bi bi-lock"></span>
+                    <input type="password" ng-model="repassword" name="txtRepassword" ng-change="checkPasswordMatch()"
+                           required class="form-control" placeholder="Nhập lại mật khẩu của bạn">
+                </div>
+              @*   <i class="text-danger" ng-show="registerForm.txtRepassword.$touched && registerForm.txtRepassword.$error.required && !passwordMismatch">
+                    <i class="bi bi-info-circle"></i> <strong>Xác nhận mật khẩu không được bỏ trống</strong>
+                </i>
+                <i class="text-danger" ng-show="registerForm.txtRepassword.$touched && passwordMismatch">
+                    <i class="bi bi-info-circle"></i> <strong>Mật khẩu phải trùng với mật khẩu trên.</strong>
+                </i> *@
+            </div>
+
+
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-success" ng-click="register()">Đăng Ký</button>
+            </div>
+
+            <p class="text-center mt-2">
+                Bạn đã có tài khoản ? Đăng nhập tại <a asp-controller="Home" asp-action="Login">đây</a>
+            </p>
+        </form>
+    </div>
+</div>
+

@@ -1,0 +1,88 @@
+﻿@model API.Data.Food
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Chi tiết món ăn</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<style>
+    h1 {
+        text-align: center;
+        padding: 10px;
+    }
+
+    .shadow {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .food-img {
+        max-width: 150px;
+        max-height: 150px;
+        border-radius: 10%;
+    }
+
+    .table th, .table td {
+        vertical-align: middle;
+    }
+</style>
+<body>
+
+    <div class="container">
+        <h1>Chi tiết món ăn</h1>
+
+        <div class="row">
+            <div class="row">
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <th>Tên món ăn</th>
+                        <td>@Html.DisplayFor(model => model.Name)</td>
+                    </tr>
+                    <tr>
+                        <th>Hình ảnh</th>
+                        <td>
+                            <img src="~/images/@Model.Image" alt="Food Image" class="food-img" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Giá</th>
+                        <td>@Html.DisplayFor(model => model.Price)</td>
+                    </tr>
+                    <tr>
+                        <th>Có sẵn</th>
+                        <td>@Html.DisplayFor(model => model.Available)</td>
+                    </tr>
+                    <tr>
+                        <th>Ngày tạo</th>
+                        <td>@Html.DisplayFor(model => model.CreatedAt)</td>
+                    </tr>
+                    <tr>
+                        <th>Danh mục</th>
+                        <td>@Html.DisplayFor(model => model.Category.CategoryName)</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-auto">
+                <a asp-action="Edit" asp-route-id="@Model?.FoodId" class="btn btn-primary">Chỉnh sửa</a>
+            </div>
+            <div class="col-auto">
+                <a asp-action="Index" class="btn btn-secondary btn-lg shadow">Back to List</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
